@@ -48,113 +48,113 @@ const Register = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <div className="container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 py-12 max-w-md">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-md mx-auto glass-effect rounded-2xl p-8 shadow-xl"
+          className="glass-effect-strong rounded-3xl p-8 md:p-10 shadow-strong"
         >
           <div className="text-center mb-8">
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: 'spring' }}
-              className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 mb-4"
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+              className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 mb-6 shadow-lg"
             >
-              <UserPlus className="w-8 h-8 text-primary-600" />
+              <UserPlus className="w-10 h-10 text-white" />
             </motion.div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">Create Account</h1>
-            <p className="text-gray-600">Sign up to get started</p>
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Create Account</h1>
+            <p className="text-gray-600 dark:text-gray-300 font-medium">Sign up to get started with TaskFlow</p>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5">
                 Full Name
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   {...register('name')}
                   type="text"
-                  className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:bg-white dark:focus:bg-gray-800 focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all shadow-sm text-gray-900 dark:text-gray-100"
                   placeholder="John Doe"
                 />
               </div>
               {errors.name && (
-                <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
+                <p className="mt-2 text-sm text-red-600 font-medium">{errors.name.message}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5">
+                Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   {...register('email')}
                   type="email"
-                  className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:bg-white dark:focus:bg-gray-800 focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all shadow-sm text-gray-900 dark:text-gray-100"
                   placeholder="your@email.com"
                 />
               </div>
               {errors.email && (
-                <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+                <p className="mt-2 text-sm text-red-600 font-medium">{errors.email.message}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   {...register('password')}
                   type="password"
-                  className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:bg-white dark:focus:bg-gray-800 focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all shadow-sm text-gray-900 dark:text-gray-100"
                   placeholder="••••••••"
                 />
               </div>
               {errors.password && (
-                <p className="mt-1 text-sm text-red-500">{errors.password.message}</p>
+                <p className="mt-2 text-sm text-red-600 font-medium">{errors.password.message}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5">
                 Confirm Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   {...register('confirmPassword')}
                   type="password"
-                  className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:bg-white dark:focus:bg-gray-800 focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all shadow-sm text-gray-900 dark:text-gray-100"
                   placeholder="••••••••"
                 />
               </div>
               {errors.confirmPassword && (
-                <p className="mt-1 text-sm text-red-500">{errors.confirmPassword.message}</p>
+                <p className="mt-2 text-sm text-red-600 font-medium">{errors.confirmPassword.message}</p>
               )}
             </div>
 
             <motion.button
               type="submit"
               disabled={loading}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full py-3 rounded-lg bg-primary-500 text-white font-semibold hover:bg-primary-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-4 rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold hover:from-primary-600 hover:to-primary-700 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed mt-6"
             >
               {loading ? 'Creating account...' : 'Sign Up'}
             </motion.button>
           </form>
 
-          <p className="mt-6 text-center text-gray-600">
+          <p className="mt-8 text-center text-gray-600 dark:text-gray-400">
             Already have an account?{' '}
-            <Link to="/login" className="text-primary-600 hover:text-primary-700 font-semibold">
+            <Link to="/login" className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold hover:underline transition-all">
               Sign in
             </Link>
           </p>

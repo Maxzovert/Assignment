@@ -1,21 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  * {
+    @apply antialiased;
+  }
+  
   body {
-    @apply bg-gradient-to-br from-pastel-blue via-white to-pastel-pink min-h-screen;
-    font-family: 'Inter', sans-serif;
+    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    @apply text-gray-900 dark:text-gray-100;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  html {
+    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900;
+    transition: background-color 0.3s ease;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
   }
 }
 
 @layer utilities {
   .glass-effect {
-    @apply bg-white/80 backdrop-blur-md border border-white/20;
+    @apply bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-white/50 dark:border-gray-700/50 shadow-lg;
+  }
+  
+  .glass-effect-strong {
+    @apply bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl border border-white/60 dark:border-gray-700/60 shadow-2xl;
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02];
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-600 via-primary-500 to-indigo-600 dark:from-primary-400 dark:via-primary-300 dark:to-indigo-400 bg-clip-text text-transparent;
+  }
+  
+  .shadow-soft {
+    box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+  }
+  
+  .shadow-medium {
+    box-shadow: 0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .shadow-strong {
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 20px 50px -10px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -26,18 +63,29 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100;
+  @apply bg-gray-100/50;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary-300 rounded-full;
+  @apply bg-gradient-to-b from-primary-400 to-primary-600 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary-400;
+  @apply bg-gradient-to-b from-primary-500 to-primary-700;
+}
+
+/* Input focus styles */
+input:focus, textarea:focus, select:focus {
+  @apply ring-2 ring-primary-500/20 border-primary-500;
+}
+
+/* Selection */
+::selection {
+  @apply bg-primary-200 text-primary-900;
 }
 

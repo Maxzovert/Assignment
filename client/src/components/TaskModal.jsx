@@ -72,66 +72,67 @@ const TaskModal = ({ task, onClose, onSuccess }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4"
         onClick={onClose}
       >
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
+          initial={{ scale: 0.95, opacity: 0, y: 20 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.95, opacity: 0, y: 20 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
           onClick={(e) => e.stopPropagation()}
-          className="glass-effect rounded-2xl p-6 w-full max-w-md shadow-2xl"
+          className="glass-effect-strong rounded-3xl p-8 w-full max-w-lg shadow-strong"
         >
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-800">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl font-bold text-gray-900">
               {isEditing ? 'Edit Task' : 'Create New Task'}
             </h2>
             <motion.button
-              whileHover={{ rotate: 90 }}
+              whileHover={{ rotate: 90, scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={onClose}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="p-2.5 rounded-xl hover:bg-gray-100 transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5 text-gray-500" />
             </motion.button>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Title *
+              <label className="block text-sm font-semibold text-gray-700 mb-2.5">
+                Title <span className="text-red-500">*</span>
               </label>
               <input
                 {...register('title')}
                 type="text"
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all shadow-sm"
                 placeholder="Enter task title"
               />
               {errors.title && (
-                <p className="mt-1 text-sm text-red-500">{errors.title.message}</p>
+                <p className="mt-2 text-sm text-red-600 font-medium">{errors.title.message}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 mb-2.5">
                 Description
               </label>
               <textarea
                 {...register('description')}
-                rows="3"
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none resize-none"
-                placeholder="Enter task description"
+                rows="4"
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none resize-none transition-all shadow-sm"
+                placeholder="Enter task description (optional)"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-2.5">
                   Status
                 </label>
                 <select
                   {...register('status')}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-3.5 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all shadow-sm font-medium text-gray-700 cursor-pointer"
                 >
                   <option value="pending">Pending</option>
                   <option value="in-progress">In Progress</option>
@@ -140,12 +141,12 @@ const TaskModal = ({ task, onClose, onSuccess }) => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-2.5">
                   Priority
                 </label>
                 <select
                   {...register('priority')}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-3.5 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all shadow-sm font-medium text-gray-700 cursor-pointer"
                 >
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>
@@ -155,13 +156,13 @@ const TaskModal = ({ task, onClose, onSuccess }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 mb-2.5">
                 Due Date
               </label>
               <input
                 {...register('dueDate')}
                 type="date"
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all shadow-sm font-medium text-gray-700"
               />
             </div>
 
@@ -169,20 +170,20 @@ const TaskModal = ({ task, onClose, onSuccess }) => {
               <motion.button
                 type="button"
                 onClick={onClose}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+                className="flex-1 px-4 py-3.5 rounded-xl border-2 border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all font-semibold shadow-sm"
               >
                 Cancel
               </motion.button>
               <motion.button
                 type="submit"
                 disabled={loading}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex-1 px-4 py-2 rounded-lg bg-primary-500 text-white font-semibold hover:bg-primary-600 transition-colors disabled:opacity-50"
+                className="flex-1 px-4 py-3.5 rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold hover:from-primary-600 hover:to-primary-700 transition-all shadow-lg hover:shadow-xl disabled:opacity-50"
               >
-                {loading ? 'Saving...' : isEditing ? 'Update' : 'Create'}
+                {loading ? 'Saving...' : isEditing ? 'Update Task' : 'Create Task'}
               </motion.button>
             </div>
           </form>

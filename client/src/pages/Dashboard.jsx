@@ -135,85 +135,93 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8 dashboard-reveal"
+          className="mb-10 dashboard-reveal"
         >
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
-            Welcome back, {user?.name}!
+          <h1 className="text-5xl font-bold gradient-text mb-3">
+            Welcome back, {user?.name?.split(' ')[0]}! 👋
           </h1>
-          <p className="text-gray-600">Manage your tasks and stay productive</p>
+          <p className="text-lg text-gray-600 dark:text-gray-300 font-medium">Manage your tasks and stay productive</p>
         </motion.div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 }}
-            className="glass-effect rounded-xl p-6 dashboard-reveal"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.1, type: "spring", stiffness: 100 }}
+            className="glass-effect-strong rounded-2xl p-6 dashboard-reveal card-hover group relative overflow-hidden"
           >
-            <div className="flex items-center justify-between">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="flex items-center justify-between relative z-10">
               <div>
-                <p className="text-gray-600 text-sm mb-1">Total Tasks</p>
-                <p className="text-3xl font-bold text-gray-800">{stats.total}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-2 uppercase tracking-wide">Total Tasks</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-gray-100">{stats.total}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">All tasks</p>
               </div>
-              <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
-                <Calendar className="w-6 h-6 text-primary-600" />
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <Calendar className="w-7 h-7 text-white" />
               </div>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="glass-effect rounded-xl p-6 dashboard-reveal"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
+            className="glass-effect-strong rounded-2xl p-6 dashboard-reveal card-hover group relative overflow-hidden"
           >
-            <div className="flex items-center justify-between">
+            <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="flex items-center justify-between relative z-10">
               <div>
-                <p className="text-gray-600 text-sm mb-1">Completed</p>
-                <p className="text-3xl font-bold text-green-600">{stats.completed}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-2 uppercase tracking-wide">Completed</p>
+                <p className="text-4xl font-bold text-green-600 dark:text-green-400">{stats.completed}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0}% done</p>
               </div>
-              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                <CheckCircle2 className="w-6 h-6 text-green-600" />
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <CheckCircle2 className="w-7 h-7 text-white" />
               </div>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
-            className="glass-effect rounded-xl p-6 dashboard-reveal"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+            className="glass-effect-strong rounded-2xl p-6 dashboard-reveal card-hover group relative overflow-hidden"
           >
-            <div className="flex items-center justify-between">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="flex items-center justify-between relative z-10">
               <div>
-                <p className="text-gray-600 text-sm mb-1">In Progress</p>
-                <p className="text-3xl font-bold text-blue-600">{stats.inProgress}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-2 uppercase tracking-wide">In Progress</p>
+                <p className="text-4xl font-bold text-blue-600 dark:text-blue-400">{stats.inProgress}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Active work</p>
               </div>
-              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-blue-600" />
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <TrendingUp className="w-7 h-7 text-white" />
               </div>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4 }}
-            className="glass-effect rounded-xl p-6 dashboard-reveal"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
+            className="glass-effect-strong rounded-2xl p-6 dashboard-reveal card-hover group relative overflow-hidden"
           >
-            <div className="flex items-center justify-between">
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="flex items-center justify-between relative z-10">
               <div>
-                <p className="text-gray-600 text-sm mb-1">Pending</p>
-                <p className="text-3xl font-bold text-orange-600">{stats.pending}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-2 uppercase tracking-wide">Pending</p>
+                <p className="text-4xl font-bold text-orange-600 dark:text-orange-400">{stats.pending}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Awaiting start</p>
               </div>
-              <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
-                <Clock className="w-6 h-6 text-orange-600" />
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <Clock className="w-7 h-7 text-white" />
               </div>
             </div>
           </motion.div>
@@ -231,45 +239,45 @@ const Dashboard = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="glass-effect rounded-xl p-6 mb-6 dashboard-reveal"
+              className="glass-effect-strong rounded-2xl p-6 mb-6 dashboard-reveal"
             >
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <input
                     type="text"
-                    placeholder="Search tasks..."
+                    placeholder="Search tasks by title or description..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                    className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:bg-white dark:focus:bg-gray-800 focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all shadow-sm text-gray-900 dark:text-gray-100"
                   />
                 </div>
 
                 <div className="flex gap-3">
                   <div className="relative">
-                    <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <select
-                    value={statusFilter}
-                    onChange={(e) => setStatusFilter(e.target.value)}
-                    className="pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none appearance-none bg-white"
-                  >
-                    <option value="all">All Status</option>
-                    <option value="pending">Pending</option>
-                    <option value="in-progress">In Progress</option>
-                    <option value="completed">Completed</option>
-                  </select>
-                </div>
+                    <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                    <select
+                      value={statusFilter}
+                      onChange={(e) => setStatusFilter(e.target.value)}
+                      className="pl-11 pr-8 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:bg-white dark:focus:bg-gray-800 focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none appearance-none transition-all shadow-sm font-medium text-gray-700 dark:text-gray-200 cursor-pointer"
+                    >
+                      <option value="all">All Status</option>
+                      <option value="pending">Pending</option>
+                      <option value="in-progress">In Progress</option>
+                      <option value="completed">Completed</option>
+                    </select>
+                  </div>
 
-                <select
-                  value={priorityFilter}
-                  onChange={(e) => setPriorityFilter(e.target.value)}
-                  className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none appearance-none bg-white"
-                >
-                  <option value="all">All Priority</option>
-                  <option value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
-                </select>
+                  <select
+                    value={priorityFilter}
+                    onChange={(e) => setPriorityFilter(e.target.value)}
+                    className="px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:bg-white dark:focus:bg-gray-800 focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none appearance-none transition-all shadow-sm font-medium text-gray-700 dark:text-gray-200 cursor-pointer"
+                  >
+                    <option value="all">All Priority</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
                 </div>
               </div>
             </motion.div>
@@ -277,11 +285,11 @@ const Dashboard = () => {
             {/* Create Task Button */}
             <motion.button
               onClick={handleCreateTask}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="mb-6 px-6 py-3 rounded-xl bg-primary-500 text-white font-semibold hover:bg-primary-600 transition-colors flex items-center gap-2 shadow-lg hover:shadow-xl"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="mb-6 px-6 py-4 rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold hover:from-primary-600 hover:to-primary-700 transition-all flex items-center gap-2 shadow-lg hover:shadow-xl group"
             >
-              <Plus className="w-5 h-5" />
+              <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
               Create New Task
             </motion.button>
 
@@ -292,12 +300,23 @@ const Dashboard = () => {
               </div>
             ) : filteredTasks.length === 0 ? (
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="glass-effect rounded-xl p-12 text-center"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="glass-effect-strong rounded-2xl p-16 text-center"
               >
-                <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 text-lg">No tasks found. Create your first task!</p>
+                <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
+                  <AlertCircle className="w-10 h-10 text-gray-400" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">No tasks found</h3>
+                <p className="text-gray-500 dark:text-gray-400 mb-6">Try adjusting your filters or create a new task to get started!</p>
+                <motion.button
+                  onClick={handleCreateTask}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold hover:from-primary-600 hover:to-primary-700 transition-all shadow-lg"
+                >
+                  Create Your First Task
+                </motion.button>
               </motion.div>
             ) : (
               <div className="grid md:grid-cols-2 gap-6">
