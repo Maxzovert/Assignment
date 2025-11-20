@@ -20,27 +20,27 @@ const ProfileCard = ({ user }) => {
           <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
           <span className="relative z-10">{user.name?.charAt(0).toUpperCase() || 'U'}</span>
         </motion.div>
-        <h3 className="text-xl font-bold text-gray-900 mb-1">{user.name}</h3>
-        <p className="text-sm text-gray-500 font-medium">{user.email}</p>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">{user.name}</h3>
+        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">{user.email}</p>
       </div>
 
-      <div className="space-y-3 pt-4 border-t border-gray-100">
-        <div className="flex items-center gap-3 text-gray-700 p-3 rounded-xl hover:bg-primary-50 transition-colors">
-          <div className="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center">
-            <User className="w-5 h-5 text-primary-600" />
+      <div className="space-y-3 pt-4 border-t border-gray-100 dark:border-gray-700">
+        <div className="flex items-center gap-3 text-gray-700 dark:text-gray-200 p-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+          <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
+            <User className="w-5 h-5 text-primary-600 dark:text-primary-400" />
           </div>
           <span className="text-sm font-medium">{user.name}</span>
         </div>
-        <div className="flex items-center gap-3 text-gray-700 p-3 rounded-xl hover:bg-primary-50 transition-colors">
-          <div className="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center">
-            <Mail className="w-5 h-5 text-primary-600" />
+        <div className="flex items-center gap-3 text-gray-700 dark:text-gray-200 p-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+          <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
+            <Mail className="w-5 h-5 text-primary-600 dark:text-primary-400" />
           </div>
           <span className="text-sm font-medium truncate">{user.email}</span>
         </div>
         {user.createdAt && (
-          <div className="flex items-center gap-3 text-gray-700 p-3 rounded-xl hover:bg-primary-50 transition-colors">
-            <div className="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center">
-              <Calendar className="w-5 h-5 text-primary-600" />
+          <div className="flex items-center gap-3 text-gray-700 dark:text-gray-200 p-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+            <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
+              <Calendar className="w-5 h-5 text-primary-600 dark:text-primary-400" />
             </div>
             <span className="text-sm font-medium">
               Joined {format(new Date(user.createdAt), 'MMM yyyy')}

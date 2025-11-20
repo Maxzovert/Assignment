@@ -5,10 +5,12 @@ import { gsap } from 'gsap';
 import ScrollReveal from 'scrollreveal';
 import Navbar from '../components/Navbar';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
 import { CheckCircle, Zap, Shield, Sparkles } from 'lucide-react';
 
 const Landing = () => {
   const { user, loading } = useAuth();
+  const { darkMode } = useTheme();
   const navigate = useNavigate();
   const heroRef = useRef(null);
   const titleRef = useRef(null);
@@ -97,33 +99,47 @@ const Landing = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ isolation: 'isolate' }}>
       <Navbar />
       
       {/* Hero Section */}
-      <section ref={heroRef} className="container mx-auto px-4 py-20 md:py-32 max-w-6xl">
-        <div className="text-center max-w-5xl mx-auto">
+      <section ref={heroRef} className="container mx-auto px-4 py-20 md:py-32 max-w-6xl relative z-10" style={{ isolation: 'isolate' }}>
+        <div className="text-center max-w-7xl mx-auto relative z-10" style={{ isolation: 'isolate' }}>
           <motion.h1
             ref={titleRef}
-            className="text-6xl md:text-8xl font-bold mb-6 gradient-text leading-tight"
+            className="text-6xl md:text-8xl font-bold mb-8 leading-tight gradient-text-safe p-4"
             style={{ 
+              backgroundImage: darkMode 
+                ? 'linear-gradient(to right, #7dd3fc, #38bdf8, #818cf8)' 
+                : 'linear-gradient(to right, #0284c7, #0ea5e9, #6366f1)',
               textShadow: 'none',
               WebkitFontSmoothing: 'antialiased',
               MozOsxFontSmoothing: 'grayscale',
               filter: 'none',
-              backdropFilter: 'none'
+              backdropFilter: 'none',
+              transform: 'translateZ(0)',
+              willChange: 'auto',
+              isolation: 'isolate',
+              position: 'relative',
+              zIndex: 10
             }}
           >
             Modern Task Management
           </motion.h1>
           <motion.p
             ref={subtitleRef}
-            className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-10 font-medium leading-relaxed max-w-3xl mx-auto"
+            className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-10 font-medium leading-relaxed max-w-3xl mx-auto"
             style={{ 
               textShadow: 'none',
               WebkitFontSmoothing: 'antialiased',
               MozOsxFontSmoothing: 'grayscale',
-              filter: 'none'
+              filter: 'none',
+              backdropFilter: 'none',
+              transform: 'translateZ(0)',
+              willChange: 'auto',
+              isolation: 'isolate',
+              position: 'relative',
+              zIndex: 10
             }}
           >
             Organize your work, boost productivity, and achieve your goals with our beautiful task management platform
@@ -144,7 +160,7 @@ const Landing = () => {
               <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   to="/login"
-                  className="inline-block px-8 py-4 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold hover:bg-white dark:hover:bg-gray-800 transition-all shadow-md hover:shadow-lg"
+                  className="inline-block px-8 py-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-all shadow-md hover:shadow-lg"
                 >
                   Sign In
                 </Link>
